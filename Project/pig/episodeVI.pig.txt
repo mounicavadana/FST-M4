@@ -1,0 +1,8 @@
+inputDialouges = LOAD 'hdfs:///user/root/inputs/episodeVI_dialouges.txt' USING PigStorage('\t') AS (name:chararray, line:chararray);
+-- Tokeize each word in the file (Map)
+ranked = RANK inputDialouges;
+OnlyDialouges = FILTER ranked BY (rank_inputDialouges > 2);
+groupByNAME = GROUP OnlyDialouges BY name;
+names = FOREACH groupByNAME GENERATE $0 as name, COUNT($1) as no_of_lines;
+namesOrdered = ORDER names BY no_of_lines DESC;
+STORE namesOrdered INTO 'hdfs:///user/root/output/episodeVI_dialouges.txt' USING PigStorage('\t');
