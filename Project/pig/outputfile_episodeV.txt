@@ -1,3 +1,0 @@
-root@133773e0be56:/# hdfs dfs -ls /user/root/output/episodeV_dialouges.txt
-Found 6 items
-drwxr-xr-x   - root supergroup          0 2021-09-15 04:02 /user/root/output/episodeV_dialouges.txt
